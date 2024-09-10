@@ -1,13 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 //for data validation we use zod -> to check whether there is zod -> zod version 3.22.2
-import {z} from 'zod';
+import { createIssueSchema } from "@/app/validationSchema";
 //importing the primsa singleton instance we created already.
 import prisma from "@/prisma/client";
 
-const createIssueSchema = z.object({
-    title: z.string().min(1).max(255),
-    description: z.string().min(1)
-})
 
 export async function POST(request:NextRequest) {
     const body = await request.json();
