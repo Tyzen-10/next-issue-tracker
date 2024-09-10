@@ -14,6 +14,11 @@ export async function POST(request:NextRequest) {
     const validation = createIssueSchema.safeParse(body);
     if(!validation.success){
         return NextResponse.json(validation.error.errors, {status: 400})
+        /* 
+        we can also use,
+        return NextResponse.json(validation.error.format(), {status: 400})
+        //format method for a properly structured error response.
+        */
         //learn what are the params for Next Response. -> check in notes.
     }
     //.issue is the name of the model
